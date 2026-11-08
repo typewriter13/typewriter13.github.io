@@ -7,7 +7,7 @@
 <meta name="description" content="Siddhant is an engineering student interested in robotics, embedded systems, music and Formula 1.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400..600&family=Hanken+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>
 (function () {
   var t = null;
@@ -19,7 +19,7 @@
 })();
 </script>
 <style>
-:root { --bg:#F2F1EF; --ink:#141416; --muted:#6A6762; --line:#D8D5D0; --accent:#7B2A2E; --display:'Bodoni Moda','Didot',Georgia,serif; --body:'Hanken Grotesk',system-ui,sans-serif; }
+:root { --bg:#F2F1EF; --ink:#141416; --muted:#6A6762; --line:#D8D5D0; --accent:#7B2A2E; --body:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif; --display:var(--body); }
 [data-theme="dark"] { --bg:#101012; --ink:#ECE9E4; --muted:#A29E97; --line:#2A2A2D; --accent:#D77C84; }
 * { box-sizing:border-box; }
 html { color-scheme:light; scroll-behavior:smooth; }
@@ -31,20 +31,26 @@ a { color:inherit; text-decoration-color:var(--accent); text-decoration-thicknes
 a:hover { color:var(--accent); }
 :focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
 .wrap { max-width:76rem; margin:0 auto; padding:0 1.75rem; }
-.top { display:flex; justify-content:space-between; align-items:center; height:5rem; font-size:.975rem; }
-.top nav { display:flex; gap:1.75rem; }
-.top nav a { text-decoration:none; }
-.top nav a:hover { text-decoration:underline; text-decoration-color:var(--accent); }
+html { scroll-padding-top: 5rem; }
+body { padding-top: 5rem; }
+.top { position: fixed; top: 0; left: 0; right: 0; z-index: 20; height: 5rem; background: var(--bg); border-bottom: 1px solid var(--line); font-size: 1rem; transition: background .5s, border-color .5s; }
+.top-in { display: flex; justify-content: space-between; align-items: center; height: 100%; }
+.brand { font-weight: 700; font-size: 1.25rem; letter-spacing: -.01em; text-decoration: none; }
+.top nav { display: flex; align-items: center; gap: 1.75rem; }
+.top nav a { text-decoration: none; }
+.top a:hover { text-decoration: underline; text-decoration-color: var(--accent); }
+.top a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 1.5px; text-underline-offset: 6px; }
+@media (max-width: 520px) { .top { font-size: .95rem; } .top nav { gap: 1.1rem; } .brand { font-size: 1.1rem; } }
 .toggle { font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer; text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:5px; }
 .hero { display:grid; grid-template-columns:minmax(12rem,17rem) minmax(0,1fr); gap:clamp(2rem,5vw,5rem); align-items:center; padding:3rem 0 4rem; }
 .portrait { width:min(13rem,100%); aspect-ratio:4/5; border-radius:999px 999px 0 0; overflow:hidden; background:var(--line); }
 .portrait img { display:block; width:100%; height:100%; object-fit:cover; }
-h1 { font:400 clamp(3.75rem,9vw,7.5rem)/.95 var(--display); letter-spacing:-.035em; margin:1.2rem 0 0; }
+h1 { font:600 clamp(3.75rem,9vw,7.5rem)/.95 var(--display); letter-spacing:-.035em; margin:1.2rem 0 0; }
 .hero-copy { max-width:47rem; font-size:clamp(1.2rem,2vw,1.55rem); color:var(--muted); }
 .hero-copy strong { color:var(--ink); font-weight:500; }
 section { border-top:1px solid var(--line); padding:4rem 0; }
 .split { display:grid; grid-template-columns:1fr 1.6fr; gap:3rem; align-items:start; }
-h2 { font:400 clamp(2rem,4.5vw,3.25rem)/1.05 var(--display); letter-spacing:-.02em; margin:0; }
+h2 { font:600 clamp(2rem,4.5vw,3.25rem)/1.05 var(--display); letter-spacing:-.02em; margin:0; }
 .bio-copy { max-width:52rem; font-size:1.15rem; }
 .bio-copy p { margin:0 0 1.15rem; }
 .contact-footer { border-top:1px solid var(--line); padding:2.5rem 0 2rem; margin-top:2rem; }
@@ -55,14 +61,22 @@ h2 { font:400 clamp(2rem,4.5vw,3.25rem)/1.05 var(--display); letter-spacing:-.02
 .copyright { font:.85rem var(--body); margin:2.5rem 0 0; }
 @media(max-width:700px) { .hero { grid-template-columns:1fr; gap:1.5rem; padding:2rem 0 3rem; } .portrait { width:min(10rem,60%); } .hero-copy { font-size:1.1rem; } .split { grid-template-columns:1fr; gap:1.5rem; } section { padding:3rem 0; } .contact-footer h2 { margin-bottom:1.5rem; } }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { transition:none!important; } }
+.sr-only { position:absolute; width:1px; height:1px; margin:-1px; padding:0; border:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+.hero-copy .bio-copy { margin-top:2rem; color:var(--ink); }
 </style>
 </head>
 <body>
-<div class="wrap">
 <header class="top">
-  <nav aria-label="Main"><a href="work/">Work</a><a href="interests/">Interests</a></nav>
-  <button class="toggle" id="toggle" type="button">Dark</button>
+  <div class="wrap top-in">
+    <a class="brand" href="index.html" aria-current="page">Siddhant</a>
+    <nav aria-label="Main">
+      <a href="work/index.html">Work</a>
+      <a href="interests/index.html">Interests</a>
+      <button class="toggle" id="toggle" type="button">Dark</button>
+    </nav>
+  </div>
 </header>
+<div class="wrap">
 <main>
   <section class="hero" style="border-top:0">
     <div>
@@ -70,16 +84,11 @@ h2 { font:400 clamp(2rem,4.5vw,3.25rem)/1.05 var(--display); letter-spacing:-.02
       <div class="portrait">
         <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 200'%3E%3Crect width='160' height='200' fill='%23E2DFDA'/%3E%3Ccircle cx='80' cy='76' r='28' fill='%23141416'/%3E%3Cpath d='M24 200c0-44 24-76 56-76s56 32 56 76z' fill='%23141416'/%3E%3C/svg%3E" alt="Placeholder portrait of Siddhant">
       </div>
-      <h1>Siddhant</h1>
+      <h1 class="sr-only">Siddhant</h1>
     </div>
     <div class="hero-copy">
       <p>hi, i’m Siddhant — an engineering student at <strong>VJTI, Mumbai</strong>, interested in robotics, embedded systems and the little details that make machines work.</p>
       <p>i like learning by building: robots, circuits, control systems and experiments that bring hardware and software together.</p>
-    </div>
-  </section>
-  <section id="about">
-    <div class="split">
-      <h2>About</h2>
       <div class="bio-copy">
         <p>i enjoy working on problems where software meets the physical world — from making a robot move reliably to understanding how its electronics and control systems fit together.</p>
         <p>outside engineering, i play the violin and follow Formula 1. i like the patience and expression that music demands, and the precision, strategy and engineering that make motorsport fascinating.</p>
